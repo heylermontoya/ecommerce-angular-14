@@ -26,7 +26,6 @@
 
 | | Antes | Después |
 |---|---|---|
-| CRITICAL | 0 | **0** |
 | HIGH | **13** | **0** |
 | MEDIUM | **4** | **0** |
 | LOW | 0 | **0** |
@@ -92,7 +91,7 @@ números distintos según se active o no esa bandera:
 
 | Comando | Alcance | Resultado inicial |
 |---|---|---|
-| `trivy fs --scanners vuln --severity CRITICAL,HIGH .` | Solo dependencias de runtime | **13 HIGH**, 0 CRITICAL |
+| `trivy fs --scanners vuln --severity CRITICAL,HIGH .` | Solo dependencias de runtime | **13 HIGH** |
 | `trivy fs --scanners vuln .` | Runtime, todas las severidades | **17** (13 HIGH + 4 MEDIUM) |
 | `trivy fs --scanners vuln --include-dev-deps .` | Runtime **+** herramientas de build | 17 + hallazgos de desarrollo |
 
