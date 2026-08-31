@@ -1,0 +1,397 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.74.0"
+  },
+  "ReportID": "01a0583e-8770-7c48-97f7-e16d3c56229c",
+  "CreatedAt": "2026-08-31T09:34:48.048805-05:00",
+  "ArtifactID": "sha256:896e60de93b21e64adaee1070e74f9463bfabc3c49714f8840221cfb1d79ddb6",
+  "ArtifactName": ".",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/cidaluna/ecommerce-angular-14.git",
+    "Branch": "main",
+    "Commit": "a9905e0065f96f650ba45b09625e9162ed17bea8",
+    "CommitMsg": "Update readme",
+    "Author": "Cida Luna \u003ccidalunna@hotmail.com\u003e",
+    "Committer": "Cida Luna \u003ccidalunna@hotmail.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": "package-lock.json",
+      "Class": "lang-pkgs",
+      "Type": "npm",
+      "Packages": [
+        {
+          "ID": "@angular/animations@20.3.30",
+          "Name": "@angular/animations",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/animations@20.3.30",
+            "UID": "b44b1cf9b4109b46"
+          },
+          "Version": "20.3.30",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "@angular/core@20.3.30",
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 575,
+              "EndLine": 590
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "@angular/cdk@20.2.14",
+          "Name": "@angular/cdk",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/cdk@20.2.14",
+            "UID": "1bdb642679eebf68"
+          },
+          "Version": "20.2.14",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "@angular/common@20.3.30",
+            "@angular/core@20.3.30",
+            "parse5@8.0.1",
+            "rxjs@7.8.2",
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 690,
+              "EndLine": 704
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "@angular/common@20.3.30",
+          "Name": "@angular/common",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/common@20.3.30",
+            "UID": "d3a3cc68d2250418"
+          },
+          "Version": "20.3.30",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "@angular/core@20.3.30",
+            "rxjs@7.8.2",
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 740,
+              "EndLine": 755
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "@angular/compiler@20.3.30",
+          "Name": "@angular/compiler",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/compiler@20.3.30",
+            "UID": "4f4e9093ec2db7f2"
+          },
+          "Version": "20.3.30",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 756,
+              "EndLine": 767
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "@angular/core@20.3.30",
+          "Name": "@angular/core",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/core@20.3.30",
+            "UID": "a94d70499d3f993d"
+          },
+          "Version": "20.3.30",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "@angular/compiler@20.3.30",
+            "rxjs@7.8.2",
+            "tslib@2.8.1",
+            "zone.js@0.15.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 801,
+              "EndLine": 825
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "@angular/forms@20.3.30",
+          "Name": "@angular/forms",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/forms@20.3.30",
+            "UID": "62cace8924b5917a"
+          },
+          "Version": "20.3.30",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "@angular/common@20.3.30",
+            "@angular/core@20.3.30",
+            "@angular/platform-browser@20.3.30",
+            "rxjs@7.8.2",
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 826,
+              "EndLine": 843
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "@angular/material@20.2.14",
+          "Name": "@angular/material",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/material@20.2.14",
+            "UID": "63fcf47243f3ce02"
+          },
+          "Version": "20.2.14",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "@angular/cdk@20.2.14",
+            "@angular/common@20.3.30",
+            "@angular/core@20.3.30",
+            "@angular/forms@20.3.30",
+            "@angular/platform-browser@20.3.30",
+            "rxjs@7.8.2",
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 844,
+              "EndLine": 860
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "@angular/platform-browser@20.3.30",
+          "Name": "@angular/platform-browser",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/platform-browser@20.3.30",
+            "UID": "775b279a8e081832"
+          },
+          "Version": "20.3.30",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "@angular/animations@20.3.30",
+            "@angular/common@20.3.30",
+            "@angular/core@20.3.30",
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 861,
+              "EndLine": 882
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "@angular/platform-browser-dynamic@20.3.30",
+          "Name": "@angular/platform-browser-dynamic",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/platform-browser-dynamic@20.3.30",
+            "UID": "a095ede57bbce513"
+          },
+          "Version": "20.3.30",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "@angular/common@20.3.30",
+            "@angular/compiler@20.3.30",
+            "@angular/core@20.3.30",
+            "@angular/platform-browser@20.3.30",
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 883,
+              "EndLine": 901
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "@angular/router@20.3.30",
+          "Name": "@angular/router",
+          "Identifier": {
+            "PURL": "pkg:npm/%40angular/router@20.3.30",
+            "UID": "20518501f9816dd0"
+          },
+          "Version": "20.3.30",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "@angular/common@20.3.30",
+            "@angular/core@20.3.30",
+            "@angular/platform-browser@20.3.30",
+            "rxjs@7.8.2",
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 902,
+              "EndLine": 919
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "rxjs@7.8.2",
+          "Name": "rxjs",
+          "Identifier": {
+            "PURL": "pkg:npm/rxjs@7.8.2",
+            "UID": "166b44e6114dcc50"
+          },
+          "Version": "7.8.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Relationship": "direct",
+          "DependsOn": [
+            "tslib@2.8.1"
+          ],
+          "Locations": [
+            {
+              "StartLine": 13160,
+              "EndLine": 13168
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "tslib@2.8.1",
+          "Name": "tslib",
+          "Identifier": {
+            "PURL": "pkg:npm/tslib@2.8.1",
+            "UID": "167f84825a2f47a"
+          },
+          "Version": "2.8.1",
+          "Licenses": [
+            "0BSD"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 14516,
+              "EndLine": 14521
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "zone.js@0.15.1",
+          "Name": "zone.js",
+          "Identifier": {
+            "PURL": "pkg:npm/zone.js@0.15.1",
+            "UID": "2a125099a6a587bd"
+          },
+          "Version": "0.15.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Relationship": "direct",
+          "Locations": [
+            {
+              "StartLine": 15890,
+              "EndLine": 15895
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "entities@8.0.0",
+          "Name": "entities",
+          "Identifier": {
+            "PURL": "pkg:npm/entities@8.0.0",
+            "UID": "378358fd4eb3732c"
+          },
+          "Version": "8.0.0",
+          "Licenses": [
+            "BSD-2-Clause"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "Locations": [
+            {
+              "StartLine": 12189,
+              "EndLine": 12200
+            }
+          ],
+          "AnalyzedBy": "npm"
+        },
+        {
+          "ID": "parse5@8.0.1",
+          "Name": "parse5",
+          "Identifier": {
+            "PURL": "pkg:npm/parse5@8.0.1",
+            "UID": "2ffe485af6a323d4"
+          },
+          "Version": "8.0.1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Indirect": true,
+          "Relationship": "indirect",
+          "DependsOn": [
+            "entities@8.0.0"
+          ],
+          "Locations": [
+            {
+              "StartLine": 12136,
+              "EndLine": 12147
+            }
+          ],
+          "AnalyzedBy": "npm"
+        }
+      ]
+    }
+  ]
+}

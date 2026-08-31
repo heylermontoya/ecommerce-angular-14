@@ -1,0 +1,28 @@
+
+Report Summary
+
+┌───────────────────┬──────┬─────────────────┐
+│      Target       │ Type │ Vulnerabilities │
+├───────────────────┼──────┼─────────────────┤
+│ package-lock.json │ npm  │        2        │
+└───────────────────┴──────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+package-lock.json (npm)
+=======================
+Total: 2 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 2, CRITICAL: 0)
+
+┌────────────┬────────────────┬──────────┬──────────┬───────────────────┬───────────────┬─────────────────────────────────────────────────────────────┐
+│  Library   │ Vulnerability  │ Severity │  Status  │ Installed Version │ Fixed Version │                            Title                            │
+├────────────┼────────────────┼──────────┼──────────┼───────────────────┼───────────────┼─────────────────────────────────────────────────────────────┤
+│ image-size │ CVE-2025-71329 │ HIGH     │ affected │ 0.5.5             │               │ image-size: image-size: Denial of Service via crafted image │
+│            │                │          │          │                   │               │ buffer with zero-valued size...                             │
+│            │                │          │          │                   │               │ https://avd.aquasec.com/nvd/cve-2025-71329                  │
+│            ├────────────────┤          │          │                   ├───────────────┼─────────────────────────────────────────────────────────────┤
+│            │ CVE-2025-71330 │          │          │                   │               │ image-size: image-size: Denial of Service via crafted ICNS  │
+│            │                │          │          │                   │               │ image buffer                                                │
+│            │                │          │          │                   │               │ https://avd.aquasec.com/nvd/cve-2025-71330                  │
+└────────────┴────────────────┴──────────┴──────────┴───────────────────┴───────────────┴─────────────────────────────────────────────────────────────┘
