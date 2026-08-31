@@ -17,9 +17,9 @@ jobs:
     name: Compilar y testear
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '20'
           cache: npm
@@ -49,12 +49,12 @@ jobs:
     name: Gate de seguridad (Trivy)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Equivale a:
       #   trivy fs --scanners vuln --severity CRITICAL,HIGH --exit-code 1 .
       - name: CRITICAL y HIGH (bloqueante)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
@@ -68,7 +68,7 @@ jobs:
       # Sin --severity, Trivy usa su valor por defecto: todos los niveles.
       - name: Todas las severidades (informativo)
         if: always()
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
@@ -89,7 +89,7 @@ jobs:
       # Un paso meramente informativo no daría ninguna de esas dos alarmas.
       - name: Dependencias de desarrollo (riesgos aceptados aplicados)
         if: always()
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         env:
           # Trivy excluye las devDependencies por defecto; esto las incluye.
           TRIVY_INCLUDE_DEV_DEPS: 'true'
@@ -119,17 +119,17 @@ jobs:
     name: Generar SBOM
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Generar SBOM CycloneDX
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
           format: cyclonedx
           output: sbom-angular.cdx.json
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: sbom-angular
           path: sbom-angular.cdx.json
