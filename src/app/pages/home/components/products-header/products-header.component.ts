@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-products-header',
   templateUrl: './products-header.component.html',
   styleUrls: ['./products-header.component.css']

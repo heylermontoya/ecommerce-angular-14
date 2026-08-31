@@ -16,7 +16,7 @@
             "outputPath": "dist/ecommerce-angular-14",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -33,8 +33,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ecommerce-angular-14:build:production"
+              "buildTarget": "ecommerce-angular-14:build:production"
             },
             "development": {
-              "browserTarget": "ecommerce-angular-14:build:development"
+              "buildTarget": "ecommerce-angular-14:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,14 +76,13 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ecommerce-angular-14:build"
+            "buildTarget": "ecommerce-angular-14:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
@@ -99,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "50b2b052-10ed-4132-8e72-26bfc293c8d4"
   }
 }

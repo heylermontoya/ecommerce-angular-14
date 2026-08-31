@@ -3,6 +3,7 @@ import { Cart, CartItem } from 'src/app/models/cart.model';
 import { CartService } from './../../services/cart.service';
 
 @Component({
+  standalone: false,
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']

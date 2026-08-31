@@ -3,6 +3,7 @@ import { Cart } from './models/cart.model';
 import { CartService } from './services/cart.service';
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

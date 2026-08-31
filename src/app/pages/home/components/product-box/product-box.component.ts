@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 
 @Component({
+  standalone: false,
   selector: 'app-product-box',
   templateUrl: './product-box.component.html',
   styleUrls: ['./product-box.component.css']
