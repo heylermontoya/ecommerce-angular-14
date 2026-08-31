@@ -1,0 +1,38 @@
+# Riesgos aceptados de forma explícita.
+#
+# Este archivo NO oculta hallazgos: los declara, los justifica y les pone
+# fecha de caducidad. Al expirar, Trivy vuelve a reportarlos y obliga a
+# revisar la decisión. Es lo contrario de un .trivyignore con solo los
+# identificadores, que los hace desaparecer sin dejar rastro.
+#
+# Solo afecta al escaneo con --include-dev-deps. El gate de CRITICAL/HIGH
+# sobre dependencias de runtime no tiene ninguna exclusión.
+
+vulnerabilities:
+  - id: CVE-2025-71329
+    paths:
+      - "package-lock.json"
+    statement: >-
+      image-size 0.5.5, denegacion de servicio al procesar un buffer de imagen
+      malformado. SIN PARCHE DISPONIBLE: se verifico forzando con npm overrides
+      la ultima version publicada (2.0.2) y Trivy la sigue marcando como
+      "affected" con Fixed Version vacia. Ninguna version del paquete esta
+      corregida. Ademas el override se reviritio porque less declara ~0.5.0 y la
+      API de image-size 2.x es incompatible con como la invoca.
+      EXPOSICION: llega por @angular-devkit/build-angular -> less -> image-size.
+      Es una devDependency, no entra en el bundle que llega al navegador, y esta
+      aplicacion no usa Less (los estilos son CSS plano y Tailwind), asi que la
+      rama de codigo nunca se ejecuta. Explotarlo exigiria introducir una imagen
+      hostil en el pipeline de compilacion, lo que ya supone un compromiso mayor.
+      SEGUIMIENTO: Dependabot avisara cuando build-angular publique una version
+      con la dependencia corregida.
+    expired_at: 2026-12-01
+
+  - id: CVE-2025-71330
+    paths:
+      - "package-lock.json"
+    statement: >-
+      image-size 0.5.5, denegacion de servicio via buffer de imagen ICNS
+      manipulado. Misma cadena de dependencia, misma ausencia de parche y misma
+      justificacion que CVE-2025-71329.
+    expired_at: 2026-12-01

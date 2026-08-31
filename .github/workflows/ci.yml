@@ -1,0 +1,136 @@
+name: ci
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  # ---------------------------------------------------------------
+  # Compila la aplicación y ejecuta la suite de tests en Chrome
+  # headless. npm ci instala exactamente lo que fija package-lock.json,
+  # a diferencia de npm install, que puede resolver versiones distintas.
+  # ---------------------------------------------------------------
+  build-test:
+    name: Compilar y testear
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar
+        run: npm run build
+
+      - name: Ejecutar tests
+        run: npx ng test --watch=false --browsers=ChromeHeadless
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+
+  # ---------------------------------------------------------------
+  # Gate de seguridad. Falla el pipeline si aparece cualquier
+  # vulnerabilidad CRITICAL o HIGH.
+  #
+  # Trivy excluye las devDependencies por defecto: el primer paso mide
+  # lo que realmente llega al navegador y es el que bloquea. El segundo
+  # audita también las herramientas de compilación, pero sin bloquear,
+  # porque arrastran hallazgos sin parche disponible que no se
+  # despliegan al usuario final.
+  # ---------------------------------------------------------------
+  security:
+    name: Gate de seguridad (Trivy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Equivale a:
+      #   trivy fs --scanners vuln --severity CRITICAL,HIGH --exit-code 1 .
+      - name: CRITICAL y HIGH (bloqueante)
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln
+          severity: CRITICAL,HIGH
+          exit-code: '1'
+          format: table
+
+      # Equivale a:
+      #   trivy fs --scanners vuln .
+      # Sin --severity, Trivy usa su valor por defecto: todos los niveles.
+      - name: Todas las severidades (informativo)
+        if: always()
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: '0'
+          format: table
+
+      # Equivale a:
+      #   trivy fs --scanners vuln --include-dev-deps \
+      #            --ignorefile .trivyignore.yaml --exit-code 1 .
+      #
+      # Bloqueante a propósito. Los dos hallazgos de image-size están
+      # aceptados explícitamente en .trivyignore.yaml, con justificación y
+      # fecha de caducidad, así que hoy pasa en verde. Pero el paso falla si:
+      #   - aparece una vulnerabilidad NUEVA en las herramientas de build
+      #   - caduca la aceptación del riesgo (2026-12-01) sin revisarla
+      # Un paso meramente informativo no daría ninguna de esas dos alarmas.
+      - name: Dependencias de desarrollo (riesgos aceptados aplicados)
+        if: always()
+        uses: aquasecurity/trivy-action@0.28.0
+        env:
+          # Trivy excluye las devDependencies por defecto; esto las incluye.
+          TRIVY_INCLUDE_DEV_DEPS: 'true'
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: '1'
+          format: table
+          trivyignores: .trivyignore.yaml
+
+      # Deja en el log qué se está aceptando y por qué, para que la excepción
+      # sea visible en cada ejecución en lugar de quedar enterrada en un fichero.
+      - name: Listar riesgos aceptados
+        if: always()
+        run: |
+          echo "::group::Riesgos aceptados en .trivyignore.yaml"
+          cat .trivyignore.yaml
+          echo "::endgroup::"
+
+  # ---------------------------------------------------------------
+  # Inventario de dependencias en formato CycloneDX, publicado como
+  # artefacto de la ejecución.
+  # ---------------------------------------------------------------
+  sbom:
+    name: Generar SBOM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generar SBOM CycloneDX
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          format: cyclonedx
+          output: sbom-angular.cdx.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom-angular
+          path: sbom-angular.cdx.json
+          retention-days: 30
